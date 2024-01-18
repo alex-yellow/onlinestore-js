@@ -1,0 +1,12 @@
+<div class="container mt-5">
+    <h1>{{ title }}</h1>
+
+    <form action="/products/{{ productId }}/add-comment" method="post">
+        <div class="mb-3">
+            <label for="commentText" class="form-label">Comment Text:</label>
+            <textarea class="form-control" id="commentText" name="text" rows="3" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Comment</button>
+    </form>
+</div>

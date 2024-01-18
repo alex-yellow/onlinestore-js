@@ -1,0 +1,12 @@
+<div class="container mt-5">
+             <h2 class="card-title mb-4">Send Message to Admin</h2>
+            <form action="/users/admin/send-message/{{admin.id}}" method="post">
+                <div class="form-group">
+                    <label for="messageText">Message:</label>
+                    <textarea class="form-control mt-3" id="messageText" name="messageText" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success mt-3">Send Message</button>
+            </form>
+
+    <a class="btn btn-primary mt-3" href="/">Back to Home</a>
+</div>

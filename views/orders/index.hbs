@@ -1,0 +1,64 @@
+<div class="container mt-5">
+    <h1>User Orders</h1>
+
+    {{#if orders.length}}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each orders}}
+            <tr>
+                <td>{{id}}</td>
+                <td id="myDate">{{date}}</td>
+                <td>{{product_name}}</td>
+                <td class="d-flex">
+                    <form action="/orders/{{id}}/updateQuantityPlus" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-primary btn-sm margin-right-1 w-70">+</button>
+                    </form>
+                    <span class="num">{{quantity}}</span>
+                    <form action="/orders/{{id}}/updateQuantityMinus" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-primary btn-sm margin-left-1 w-70">-</button>
+                    </form>
+                </td>
+
+
+                <td>
+                    {{#if status}}
+                    deliver
+                    {{else}}
+                    inCart
+                    {{/if}}
+                </td>
+                <td>
+                    <!-- Ссылка на изменение статуса -->
+                    <form action="/orders/{{id}}/update" method="post" class="d-inline"
+                        onsubmit="return confirm('Update Status?')">
+
+                        <button type="submit" class="btn btn-primary">Order</button>
+                    </form>
+                </td>
+                <td>
+                    <!-- Форма для удаления заказа -->
+                    <form action="/orders/delete/{{id}}" method="post" class="d-inline"
+                        onsubmit="return confirm('Delete order?')">
+                        <input type="hidden" name="quantity" value="{{quantity}}">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete Order</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <p>No orders available.</p>
+    {{/if}}
+</div>

@@ -1,0 +1,42 @@
+<div class="container mt-5">
+    {{#if successMessage}}
+    <div class="alert alert-success" role="alert" id="mess">
+        {{successMessage}}
+    </div>
+    {{/if}}
+    <div class="card mt-3">
+        <div class="card-body">
+            <h2 class="card-title">My Messages</h2>
+
+            {{#if messages.length}}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-md-3">Data</th>
+                        <th class="col-md-6">Text</th>
+                        <th class="col-md-3"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each messages}}
+                    <tr>
+                        <td id="myDate">{{ created_at }}</td>
+                        <td>{{ message_text }}</td>
+                        <td>
+                            <a href="/users/admin/send-message/{{admin_id}}" class="btn btn-primary">Reply</a>
+                            <form action="/admin/user/delete-message/{{id}}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <p>No messages for this user.</p>
+            {{/if}}
+        </div>
+    </div>
+
+    <a class="btn btn-primary mt-3" href="/">Back to Home</a>
+</div>

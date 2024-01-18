@@ -1,0 +1,26 @@
+<div class="container mt-5">
+    <h1>{{ title }}</h1>
+
+    {{#if comments.length}}
+    <div class="list-group mb-3">
+        {{#each comments}}
+        <div class="list-group-item">
+            <b>{{name}}</b>
+            <p>{{ text }}</p>
+            {{#if ../admin}}
+            <form action="/comments/{{id}}/delete" method="post">
+                <button type="submit" class="btn btn-danger">Delete Comment</button>
+            </form>
+            {{/if}}
+        </div>
+        {{/each}}
+    </div>
+    <!-- Добавленная ссылка -->
+    {{#if user}}
+    <a href="/products/{{productId}}/add-comment" class="btn btn-primary">Add Comment</a>
+    {{/if}}
+    {{else}}
+    <p>No comments available.</p>
+    {{/if}}
+    <a href="/products/{{productId}}" class="btn btn-success">Back to Product</a>
+</div>
